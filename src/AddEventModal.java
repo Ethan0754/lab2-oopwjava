@@ -9,7 +9,7 @@ public class AddEventModal extends JDialog {
     private EventListPanel eventListPanel;
     private JButton addEventButton;
     private AddEventModal myself;
-    private String[] events = {"Event", "Deadline", "Meeting"};
+    private String[] events = {"Deadline", "Meeting"};
     private JComboBox<String> eventSelector;
     private JPanel infoCollectionPanel;
 
@@ -70,7 +70,7 @@ public class AddEventModal extends JDialog {
             infoCollectionPanel.removeAll();
             switch (eventSelector.getSelectedIndex()) {
                 case 0: {
-                    attributes.add(new Attribute("Name", new JTextField(1)));
+                    attributes.add(new Attribute("Name", new JTextField(10)));
                     attributes.add(new Attribute("Due Date", new JTextField(10)));
                     break;
                 }
