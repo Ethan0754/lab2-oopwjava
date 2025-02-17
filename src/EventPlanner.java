@@ -17,8 +17,8 @@ public class EventPlanner {
 
     }
     static void addDefaultEvents(EventListPanel events) {
-        events.add(new Deadline("Test Deadline", LocalDateTime.now()));
-        events.add(new Meeting("Test Meeting", LocalDateTime.now(), LocalDateTime.now(), "Farris Hall"));
+        events.addEvents(new Deadline("Test Deadline", LocalDateTime.now()));
+        events.addEvents(new Meeting("Test Meeting", LocalDateTime.now(), LocalDateTime.now(), "Farris Hall"));
     }
 
 }

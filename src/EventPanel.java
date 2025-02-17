@@ -7,6 +7,7 @@ public class EventPanel extends JPanel {
 
     public EventPanel(Event event) {
         this.event = event;
+        completeButton = new JButton("Complete");
     }
 
     @Override
@@ -14,10 +15,16 @@ public class EventPanel extends JPanel {
         super.paintComponent(g);
         g.setFont(new Font("Arial", Font.BOLD, 14)); // Set font for better readability
         g.setColor(Color.BLACK); // Set text color
-
-        if (event != null) {
-            g.drawString("Event: " + event.getName(), 10, 20);
-            g.drawString("Date: " + event.getDateTime().toString(), 10, 40);
+        add(completeButton);
+        if (event instanceof Meeting meeting) {
+            g.drawString("Event: " + meeting.getName(), 10, 20);
+            g.drawString("Start Date: " + meeting.getDateTime().toString(), 10, 40);
+            g.drawString("End Date: " + meeting.getEndDateTime().toString(), 10, 60);
+            g.drawString("Location: " + meeting.getLocation(), 10, 80);
+        }
+        if (event instanceof Deadline deadline) {
+            g.drawString("Event: " + deadline.getName(), 10, 20);
+            g.drawString("Due Date: " + deadline.getDateTime().toString(), 10, 40);
         }
     }
 }

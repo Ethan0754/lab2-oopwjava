@@ -1,7 +1,8 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 
 public class EventListPanel extends JPanel {
     private ArrayList<Event> events;
@@ -12,38 +13,63 @@ public class EventListPanel extends JPanel {
     private JButton addEventButton;
 
     public EventListPanel() {
+        events = new ArrayList<>();
         this.setPreferredSize(new Dimension(1920,1080));
         this.setBackground(Color.DARK_GRAY);
         controlPanel = new JPanel();
         displayPanel = new JPanel();
-        controlPanel.setPreferredSize(new Dimension(250,250));
-        controlPanel.setBackground(Color.BLUE);
-        displayPanel.setPreferredSize(new Dimension(500,500));
+        controlPanel.setPreferredSize(new Dimension(1920,80));
+        controlPanel.setBackground(Color.DARK_GRAY);
+        displayPanel.setPreferredSize(new Dimension(1920,1000));
         displayPanel.setBackground(Color.BLACK);
         this.add(controlPanel);
         this.add(displayPanel);
 
         addEventButton = new JButton("Add Event");
+        addEventButton.setBackground(Color.WHITE);
+        addEventButton.setForeground(Color.RED);
+        addEventButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+        // Make it non-opaque for a flat look
+        addEventButton.setOpaque(true);
+        addEventButton.setFocusPainted(false);
+        addEventButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addEventButton.setBackground(Color.GRAY); // Darker blue
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addEventButton.setBackground(Color.WHITE); // Original blue
+            }
+        });
         addEventButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Add Event button clicked!");
+            new AddEventModal(this);
+
+
+            revalidate();
+            repaint();
+
         });
         controlPanel.add(addEventButton);
 
-        EventPanel test123 = new EventPanel(new Deadline("test123", LocalDateTime.now()));
-        test123.setPreferredSize(new Dimension(250,250));
-        displayPanel.add(test123);
     }
 
-    public void addEvents(ArrayList<Event> events) {
-
+    public void addEvents(Event event) {
+        this.events.add(event);
+        updateDisplay();
     }
 
-    public void add(Deadline testDeadline) {
+    public void updateDisplay() {
+        displayPanel.removeAll();
+        for (Event event : events) {
 
+            displayPanel.add(new EventPanel(event)).setPreferredSize(new Dimension(300, 100));
+        }
+        revalidate();
+        repaint();
     }
 
-    public void add(Meeting meeting) {
-    }
 
 
 }
+
