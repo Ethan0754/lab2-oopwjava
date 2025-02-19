@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 public class Meeting extends Event implements Completable {
     private String location;
     private boolean complete;
-    private boolean filterShowComplete = true;
-    private boolean filterShowMeeting = true;
+    private boolean filterShowComplete = true; //handles whether it is filtered out or not
+    private boolean filterShowMeeting = true; //handles whether it is filtered out or not
     private LocalDateTime endDateTime;
 
 
 
     Meeting(String name, LocalDateTime start, LocalDateTime end, String location) {
-        super(name, start);
+        super(name, start); //gets the name and start time from the event
+        //meeting specifc variables
         this.endDateTime = end;
         this.location = location;
     }
