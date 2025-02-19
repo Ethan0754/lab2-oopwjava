@@ -25,6 +25,7 @@ abstract class Event implements Comparable<Event> {
         this.name = name;
     }
 
+
     @Override
     public int compareTo(Event e) {
         if (e.dateTime.isBefore(dateTime)){
@@ -37,4 +38,6 @@ abstract class Event implements Comparable<Event> {
             return 0;
         }
     }
+
+
 }

@@ -1,5 +1,5 @@
 public interface Completable {
-    public void complete();
+    void complete();
 
-    public boolean isComplete();
+    boolean isComplete();
 }

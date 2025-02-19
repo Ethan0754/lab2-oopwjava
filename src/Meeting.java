@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 public class Meeting extends Event implements Completable {
     private String location;
     private boolean complete;
+    private boolean filterShowComplete = true;
+    private boolean filterShowMeeting = true;
     private LocalDateTime endDateTime;
 
 
@@ -30,6 +32,22 @@ public class Meeting extends Event implements Completable {
 
     public String getLocation() {
         return location;
+    }
+
+    public boolean isFilterShowComplete() {
+        return filterShowComplete;
+    }
+
+    public void setFilterShowComplete(boolean filterShowComplete) {
+        this.filterShowComplete = filterShowComplete;
+    }
+
+    public boolean isFilterShowMeeting() {
+        return filterShowMeeting;
+    }
+
+    public void setFilterShowMeeting(boolean filterShowMeeting) {
+        this.filterShowMeeting = filterShowMeeting;
     }
 
     public Duration getDuration() {
